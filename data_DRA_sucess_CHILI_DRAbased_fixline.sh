@@ -1,0 +1,1 @@
+curl -X POST -v -H "Content-Type: application/json" -T /root/Aleem/TEF_UK_SCE/FRN5288/working_JSON_DTAG/TEF_Venezuala/data_DRA_sucess_CHILI_DRAbased_fixline.json "http://10.71.168.167:8086/sessionControl/v6"
