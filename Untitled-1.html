@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avira — The Essence of Modern Luxury</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font (Inter) and elegant body styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc; /* Soft White */
+        }
+        .text-gold {
+            color: #b78a3c; /* Custom Gold Accent */
+        }
+        .bg-charcoal {
+            background-color: #1a202c; /* Dark Charcoal */
+        }
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .cta-button:hover {
+            box-shadow: 0 10px 15px -3px rgba(183, 138, 60, 0.5), 0 4px 6px -2px rgba(183, 138, 60, 0.5);
+            transform: scale(1.05);
+        }
+        /* Style for the overlay to ensure it covers the whole screen */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100; /* Ensure it's on top of everything */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(26, 32, 44, 0.95); /* Semi-transparent dark overlay */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1a202c',
+                        'accent-gold': '#b78a3c',
+                    }
+                }
+            }
+        }
+
+        /**
+         * Function to hide the login overlay and reveal the main website interface.
+         * This simulates a successful login or access action.
+         */
+        function showInterface(event) {
+            // Prevent form submission if called from a button/form
+            if (event) {
+                event.preventDefault();
+            }
+            
+            const overlay = document.getElementById('login-overlay');
+            const mainContent = document.getElementById('main-content');
+
+            if (overlay && mainContent) {
+                // Hide the overlay
+                overlay.style.display = 'none'; 
+                // Show the main content
+                mainContent.classList.remove('hidden');
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen antialiased">
+
+    <!-- 1. LOGIN OVERLAY (The First Interface) -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="bg-white p-10 sm:p-12 rounded-2xl shadow-2xl max-w-md w-full mx-4 hover-lift transition duration-500">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-widest text-primary-dark uppercase mb-2">AVIRA</h1>
+                <h2 class="text-xl font-bold text-accent-gold mb-6">Exclusive Access</h2>
+                <p class="text-gray-600 mb-8">
+                    Please sign in to experience the full Avira collection.
+                </p>
+            </div>
+            
+            <!-- Login/Registration Form -->
+            <form onsubmit="showInterface(event)" class="space-y-4 text-left">
+                
+                <!-- Username Field -->
+                <div>
+                    <label for="overlay-username" class="block text-sm font-medium text-gray-700 mb-1">Username / Name</label>
+                    <input type="text" id="overlay-username" name="username" required 
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-accent-gold focus:border-accent-gold transition duration-300" 
+                           placeholder="Enter your name or username">
+                </div>
+
+                <!-- Mobile No Field -->
+                <div>
+                    <label for="overlay-mobile" class="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                    <input type="tel" id="overlay-mobile" name="mobile" required 
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-accent-gold focus:border-accent-gold transition duration-300" 
+                           placeholder="e.g., +1 555 123 4567">
+                </div>
+
+                <!-- Password Field (1 to 10 characters) -->
+                <div>
+                    <label for="overlay-password" class="block text-sm font-medium text-gray-700 mb-1">Password (1-10 Characters)</label>
+                    <input type="password" id="overlay-password" name="password" required 
+                           minlength="1" maxlength="10"
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-accent-gold focus:border-accent-gold transition duration-300" 
+                           placeholder="Choose a password (max 10 chars)">
+                    <p class="mt-2 text-xs text-gray-500">Hint: Password must be between 1 and 10 characters long.</p>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" 
+                        class="cta-button w-full bg-primary-dark text-white font-bold py-3 rounded-full text-lg uppercase tracking-wider mt-6">
+                    Access Site
+                </button>
+                
+                <!-- Skip Link -->
+                <div class="text-center pt-4">
+                    <a href="#" onclick="showInterface(event)" class="text-sm text-gray-500 hover:text-accent-gold transition duration-300">
+                        Skip for now
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- 2. MAIN WEBSITE CONTENT (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        
+        <!-- Header & Navigation -->
+        <header class="sticky top-0 bg-white shadow-md z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <h1 class="text-3xl font-extrabold tracking-widest text-primary-dark uppercase">AVIRA</h1>
+                <nav class="hidden sm:flex space-x-8 text-sm font-medium text-gray-600">
+                    <a href="#story" class="hover:text-accent-gold transition duration-150">Our Story</a>
+                    <a href="#notes" class="hover:text-accent-gold transition duration-150">The Scent</a>
+                    <a href="#purchase" class="hover:text-accent-gold transition duration-150">Shop Now</a>
+                </nav>
+                <a href="#purchase" class="hidden sm:block px-4 py-2 text-sm font-semibold text-white bg-accent-gold rounded-full hover:bg-opacity-90 transition duration-300">
+                    Buy Avira
+                </a>
+            </div>
+        </header>
+
+        <!-- 1. Hero Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+            <div class="lg:flex lg:items-center lg:space-x-12">
+                
+                <!-- Hero Text Content -->
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <h2 class="text-sm font-semibold tracking-widest uppercase text-accent-gold mb-4">New Release: Signature Series</h2>
+                    <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight text-primary-dark">
+                        The Scent of <span class="text-accent-gold">Unforgettable</span> Presence.
+                    </h1>
+                    <p class="mt-6 text-lg text-gray-700 max-w-lg">
+                        Avira is a captivating, long-lasting fragrance that merges classic warmth with modern crispness. It's not just a perfume; it's your new statement.
+                    </p>
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#purchase" class="cta-button bg-accent-gold text-white font-bold py-3 px-8 rounded-full text-lg uppercase tracking-wider">
+                            Discover Avira
+                        </a>
+                        <a href="#notes" class="cta-button border border-primary-dark text-primary-dark font-semibold py-3 px-8 rounded-full text-lg hover:bg-primary-dark hover:text-white">
+                            See Details
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image/Visual (Placeholder) -->
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="w-full max-w-md aspect-w-1 aspect-h-1 rounded-3xl overflow-hidden shadow-2xl hover-lift bg-gray-100 border-2 border-accent-gold transition duration-500">
+                        <!-- Image preview: will display chosen local file or fallback remote placeholder -->
+                        <img id="hero-image" src="https://placehold.co/600x600/b78a3c/ffffff?text=AVIRA+PERFUME+BOTTLE" 
+                            alt="Avira luxury perfume bottle with a golden liquid and cap." 
+                            class="w-full h-full object-cover p-6"/>
+                    </div>
+                </div>
+            </div>
+            <!-- Image upload control (below hero) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 flex justify-center">
+                <div class="w-full max-w-md text-center">
+                    <label for="image-input" class="block text-sm font-medium text-gray-700 mb-2">Use your product photo</label>
+                    <input id="image-input" type="file" accept="image/*" class="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent-gold file:text-white hover:file:opacity-90" />
+                    <p class="text-xs text-gray-500 mt-2">Pick a JPG/PNG from your computer. The preview updates immediately. To make the change permanent, save the image file next to this HTML and change the <code>src</code>.</p>
+                </div>
+            </div>
+        </section>
+        </section>
+
+        <!-- --- -->
+
+        <!-- CUSTOMER GUIDE -->
+        <section id="customer-guide" class="py-16 bg-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-6">Avira Signature Series: The Customer Guide</h2>
+                <p class="text-center text-gray-600 mb-8">Welcome to the Avira Collective. You now own a fragrance crafted for presence and longevity. This guide will help you understand, wear, and care for your Signature Series Eau de Parfum.</p>
+
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-3">1. Understanding the Scent Profile</h3>
+                        <p class="text-gray-700 mb-4">Avira is designed as a complex, long-lasting fragrance that evolves throughout the day, guaranteed by its 25% high concentration (Eau de Parfum).</p>
+
+                        <h4 class="text-lg font-semibold text-primary-dark mb-2">The Olfactory Pyramid</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-gray-700">
+                            <div class="p-4 border rounded-lg">
+                                <h5 class="font-bold">Top Notes</h5>
+                                <p class="text-sm text-gray-600">Crisp Bergamot, Pink Peppercorn, Italian Lemon Zest</p>
+                                <p class="mt-2 text-sm">This is the initial burst—bright, invigorating, and immediately noticeable. It creates a powerful first impression.</p>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <h5 class="font-bold">Middle Notes</h5>
+                                <p class="text-sm text-gray-600">White Jasmine Petals, Green Tea Accord, Sandalwood Heart</p>
+                                <p class="mt-2 text-sm">The heart of Avira, emerging after the top notes fade. This blend is rich, complex, and provides the core of the fragrance's warmth and character.</p>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <h5 class="font-bold">Base Notes</h5>
+                                <p class="text-sm text-gray-600">Rich Amber, Cedarwood Essence, Musk</p>
+                                <p class="mt-2 text-sm">The foundation of the scent—heavy, long-lasting molecules that provide a grounding, warm, and memorable trail that lasts 8+ hours.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-3">2. Application Guide for All-Day Wear</h3>
+                        <p class="text-gray-700 mb-2">To achieve the guaranteed 8+ hours of longevity, application technique is key.</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li><strong>Moisturize First:</strong> Fragrance lasts longer on hydrated skin. Apply an unscented lotion or petroleum jelly to your pulse points before applying Avira.</li>
+                            <li><strong>Target Pulse Points:</strong> Wrists (avoid rubbing), behind the ears or neck, inner elbows.</li>
+                            <li><strong>Spritz and Wait:</strong> Hold the bottle 5–7 inches away and spray lightly. Let the perfume air dry naturally; do not rub it into your skin.</li>
+                            <li><strong>Hair/Clothing (Optional):</strong> Lightly mist the air and walk through it for longer-lasting effect on hair or scarves.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-3">3. Care and Preservation</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li><strong>Avoid Sunlight and Heat:</strong> Store your bottle in a cool, dark place—light and heat can alter the scent.</li>
+                            <li><strong>Keep the Cap On:</strong> Replace the cap tightly after use to prevent evaporation and minimize air exposure.</li>
+                            <li><strong>Travel Safely:</strong> Keep the bottle upright and protected from vigorous shaking while traveling.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary-dark mb-3">4. The Avira Promise</h3>
+                        <p class="text-gray-700">We are committed to Artisan Made excellence, using sustainably sourced ingredients and bottling ethically in small batches. Avira is more than a fragrance—it is a statement of enduring elegance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- -->
+
+        <!-- 5. Product Photo Gallery (User can select multiple images) -->
+        <section id="gallery-section" class="py-12 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-bold text-primary-dark text-center mb-4">Product Photos</h2>
+                <p class="text-center text-sm text-gray-600 mb-6">Select one or more product images from your computer (or place the files next to this HTML file with the names below) to preview them here.</p>
+
+                <div class="max-w-md mx-auto text-center">
+                    <input id="gallery-input" type="file" accept="image/*" multiple class="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent-gold file:text-white hover:file:opacity-90" />
+                </div>
+
+                <div id="gallery" class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4"></div>
+
+                <div class="mt-4 text-xs text-gray-500 text-center">Auto-load attempts: If you want these images to load automatically without selecting files, copy the files into the same folder as this HTML (or open this page with a viewer that allows file:/// access). Filenames attempted:<br/>
+                    <code>WhatsApp Image 2025-10-21 at 15.24.47.jpeg</code>, <code>WhatsApp Image 2025-10-21 at 15.24.46.jpeg</code>, <code>WhatsApp Image 2025-10-21 at 15.24.46 (2).jpeg</code>, <code>WhatsApp Image 2025-10-21 at 15.24.46 (1).jpeg</code>, <code>WhatsApp Image 2025-10-21 at 15.24.45.jpeg</code>, <code>WhatsApp Image 2025-10-21 at 15.24.45 (1).jpeg</code>, <code>WhatsApp Image 2025-10-21 at 15.24.44.jpeg</code>, <code>WhatsApp Image 2025-10-21 at 15.24.44 (1).jpeg</code>, <code>WhatsApp Image 2025-10-21 at 15.24.43.jpeg</code>, <code>WhatsApp Image 2025-10-21 at 15.24.43 (1).jpeg</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- -->
+
+        <!-- 2. Product Story & Longevity Section -->
+        <section id="story" class="bg-primary-dark py-20 sm:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-sm font-semibold tracking-widest uppercase text-accent-gold mb-4">Crafted Excellence</h2>
+                <p class="text-3xl sm:text-5xl font-bold text-white max-w-4xl mx-auto leading-snug">
+                    "We captured the serenity of dawn and the ambition of the city in a single, perfectly balanced formula."
+                </p>
+                
+                <!-- Story photo uploader -->
+                <div class="mt-10">
+                    <h3 class="text-lg font-semibold text-white mb-3">Add story photos</h3>
+                    <div class="max-w-md mx-auto">
+                        <input id="story-input" type="file" accept="image/*" multiple class="block w-full text-sm text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent-gold file:text-white hover:file:opacity-90" />
+                    </div>
+                    <div id="story-gallery" class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4"></div>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
+                    
+                    <!-- Feature 1: Concentration -->
+                    <div class="p-6 rounded-xl border border-gray-700 hover-lift transition duration-300">
+                        <p class="text-5xl font-extrabold text-accent-gold mb-3">25%</p>
+                        <h3 class="text-xl font-bold mb-2">High Concentration</h3>
+                        <p class="text-gray-400 text-sm">Formulated as an Eau de Parfum, guaranteeing deep complexity and rich projection.</p>
+                    </div>
+
+                    <!-- Feature 2: Longevity -->
+                    <div class="p-6 rounded-xl border border-gray-700 hover-lift transition duration-300">
+                        <p class="text-5xl font-extrabold text-accent-gold mb-3">8+ HRS</p>
+                        <h3 class="text-xl font-bold mb-2">All-Day Wear</h3>
+                        <p class="text-gray-400 text-sm">Designed for exceptional staying power, from your morning commute to your evening retreat.</p>
+                    </div>
+
+                    <!-- Feature 3: Craftsmanship -->
+                    <div class="p-6 rounded-xl border border-gray-700 hover-lift transition duration-300">
+                        <p class="text-5xl font-extrabold text-accent-gold mb-3">100%</p>
+                        <h3 class="text-xl font-bold mb-2">Artisan Made</h3>
+                        <p class="text-gray-400 text-sm">Sustainably sourced ingredients, ethically bottled in small batches for quality assurance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- -->
+
+        <!-- 3. Scent Notes Section -->
+        <section id="notes" class="py-20 sm:py-28 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-primary-dark text-center mb-12">The Olfactory Pyramid</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    
+                    <!-- Top Notes -->
+                    <div class="text-center p-6 border-b-4 border-accent-gold hover-lift rounded-xl transition duration-300">
+                        <div class="text-5xl text-accent-gold mb-4">🍋</div>
+                        <h3 class="text-2xl font-bold mb-2 text-primary-dark">Top Notes</h3>
+                        <p class="text-gray-600 mb-4 font-medium">The initial burst, bright and invigorating.</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>Crisp Bergamot</li>
+                            <li>Pink Peppercorn</li>
+                            <li>Italian Lemon Zest</li>
+                        </ul>
+                    </div>
+
+                    <!-- Middle Notes -->
+                    <div class="text-center p-6 border-b-4 border-gray-500 hover-lift rounded-xl transition duration-300">
+                        <div class="text-5xl text-gray-500 mb-4">🌿</div>
+                        <h3 class="text-2xl font-bold mb-2 text-primary-dark">Middle Notes</h3>
+                        <p class="text-gray-600 mb-4 font-medium">The heart of the fragrance, rich and complex.</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>White Jasmine Petals</li>
+                            <li>Green Tea Accord</li>
+                            <li>Sandalwood Heart</li>
+                        </ul>
+                    </div>
+
+                    <!-- Base Notes -->
+                    <div class="text-center p-6 border-b-4 border-primary-dark hover-lift rounded-xl transition duration-300">
+                        <div class="text-5xl text-primary-dark mb-4">🪵</div>
+                        <h3 class="text-2xl font-bold mb-2 text-primary-dark">Base Notes</h3>
+                        <p class="text-gray-600 mb-4 font-medium">The lingering foundation, warm and grounding.</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>Rich Amber</li>
+                            <li>Cedarwood Essence</li>
+                            <li>Musk</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- -->
+
+        <!-- 4. Call to Action / Purchase Section -->
+        <section id="purchase" class="bg-gray-100 py-20 sm:py-28">
+            <div class="max-w-4xl mx-auto text-center px-4">
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-primary-dark mb-4">Ready to Make Your Statement?</h2>
+                <p class="text-xl text-gray-700 mb-8">
+                    Experience the enduring elegance of Avira. Limited stock available for the Signature Series.
+                </p>
+                <div class="max-w-3xl mx-auto mt-6">
+                    <div class="bg-white shadow-md rounded-lg p-6 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                        <!-- Left: Price & actions -->
+                        <div class="flex-1">
+                            <div class="flex items-baseline space-x-4">
+                                <div>
+                                    <div class="text-4xl font-extrabold text-primary-dark">₹<span id="price-amount" class="text-accent-gold">399</span></div>
+                                    <div class="text-sm text-gray-500 line-through">MRP ₹699</div>
+                                    <div class="text-sm text-green-600 font-semibold">43% OFF</div>
+                                </div>
+                                <div class="ml-6 flex items-center bg-gray-50 px-3 py-1 rounded">
+                                    <div class="text-sm font-medium text-gray-700 mr-2">Rating</div>
+                                    <div class="text-sm text-white bg-accent-gold px-2 py-1 rounded">4.7 ★</div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 flex items-center space-x-4">
+                                <label class="text-sm text-gray-600">Quantity</label>
+                                <div class="flex items-center border rounded overflow-hidden">
+                                    <button id="qty-decr" class="px-3 py-1 bg-gray-100 text-gray-700">-</button>
+                                    <input id="qty-input" type="number" value="1" min="1" class="w-16 text-center border-l border-r px-2 py-1" />
+                                    <button id="qty-incr" class="px-3 py-1 bg-gray-100 text-gray-700">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: CTA buttons -->
+                        <div class="flex-shrink-0 w-full sm:w-auto flex flex-col sm:flex-row gap-3">
+                            <button id="buy-now" class="w-full sm:w-auto bg-accent-gold text-white font-bold py-3 px-6 rounded">Buy Now</button>
+                            <button id="add-cart" class="w-full sm:w-auto border border-primary-dark text-primary-dark font-semibold py-3 px-6 rounded">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 text-sm text-gray-600 flex flex-col sm:flex-row sm:justify-between gap-2">
+                        <div>Delivery: <strong>Free</strong> — arrives in 3-5 business days</div>
+                        <div>Seller: <strong>Avira Official</strong></div>
+                    </div>
+
+                    <p class="mt-4 text-sm text-gray-500">Free shipping on all first orders.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- -->
+
+        <!-- Footer -->
+        <footer class="bg-primary-dark text-gray-400 py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-sm">
+                <p>&copy; 2024 AVIRA Perfumes. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-accent-gold">Privacy</a>
+                    <a href="#" class="hover:text-accent-gold">Terms</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Gallery item helper: creates a thumbnail with Save/Delete buttons
+        function createGalleryEntry(item, onDelete, onSave) {
+            // item: { src, name, file?, isLocal }
+            const wrapper = document.createElement('div');
+            wrapper.className = 'rounded-lg overflow-hidden border shadow-sm relative bg-white';
+
+            const img = document.createElement('img');
+            img.src = item.src;
+            img.alt = item.name || 'Product photo';
+            img.className = 'w-full h-40 object-cover';
+            wrapper.appendChild(img);
+
+            // Overlay controls container
+            const controls = document.createElement('div');
+            controls.className = 'absolute top-2 right-2 flex space-x-2';
+
+            // Save permanently button
+            const saveBtn = document.createElement('button');
+            saveBtn.type = 'button';
+            saveBtn.className = 'bg-accent-gold text-white text-xs px-2 py-1 rounded';
+            saveBtn.innerText = 'Save';
+            saveBtn.title = 'Save this image permanently (choose folder)';
+            saveBtn.addEventListener('click', (e) => { e.stopPropagation(); onSave && onSave(item); });
+            controls.appendChild(saveBtn);
+
+            // Delete button (remove from UI; if file is local, mark for deletion)
+            const delBtn = document.createElement('button');
+            delBtn.type = 'button';
+            delBtn.className = 'bg-red-600 text-white text-xs px-2 py-1 rounded';
+            delBtn.innerText = 'Delete';
+            delBtn.title = 'Remove from gallery (and optionally delete from disk)';
+            delBtn.addEventListener('click', (e) => { e.stopPropagation(); onDelete && onDelete(item, wrapper); });
+            controls.appendChild(delBtn);
+
+            wrapper.appendChild(controls);
+
+            return wrapper;
+        }
+
+        // Wire gallery input
+        (function(){
+            const galleryInput = document.getElementById('gallery-input');
+            const gallery = document.getElementById('gallery');
+            const heroInput = document.getElementById('image-input');
+            const hero = document.getElementById('hero-image');
+
+            // (removed floating deletable-files UI)
+
+            if (galleryInput && gallery) {
+                galleryInput.addEventListener('change', function(e){
+                    const files = Array.from(e.target.files || []);
+                    files.forEach(file => {
+                        const url = URL.createObjectURL(file);
+                        const item = { src: url, name: file.name, file: file, isLocal: false };
+                        const entry = createGalleryEntry(item, onDeleteImage, onSaveImage);
+                        gallery.appendChild(entry);
+                        const imgEl = entry.querySelector('img');
+                        imgEl.onload = () => URL.revokeObjectURL(url);
+                    });
+                });
+            }
+
+            // Story uploader: preview into story-gallery
+            const storyInput = document.getElementById('story-input');
+            const storyGallery = document.getElementById('story-gallery');
+            if (storyInput && storyGallery) {
+                    // Create story-only thumbnail (Delete button only)
+                    function createStoryEntry(item, onDelete) {
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'rounded-lg overflow-hidden border shadow-sm relative bg-white';
+                        const img = document.createElement('img');
+                        img.src = item.src;
+                        img.alt = item.name || 'Story photo';
+                        img.className = 'w-full h-40 object-cover';
+                        wrapper.appendChild(img);
+
+                        const controls = document.createElement('div');
+                        controls.className = 'absolute top-2 right-2';
+                        const delBtn = document.createElement('button');
+                        delBtn.type = 'button';
+                        delBtn.className = 'bg-red-600 text-white text-xs px-2 py-1 rounded';
+                        delBtn.innerText = 'Delete';
+                        delBtn.title = 'Remove from story gallery';
+                        delBtn.addEventListener('click', (e) => { e.stopPropagation(); onDelete && onDelete(item, wrapper); });
+                        controls.appendChild(delBtn);
+                        wrapper.appendChild(controls);
+                        return wrapper;
+                    }
+
+                    storyInput.addEventListener('change', function(e){
+                        const files = Array.from(e.target.files || []);
+                        files.forEach(file => {
+                            const url = URL.createObjectURL(file);
+                            const item = { src: url, name: file.name, file: file, isLocal: false };
+                            const entry = createStoryEntry(item, onDeleteImage);
+                            storyGallery.appendChild(entry);
+                            const imgEl = entry.querySelector('img');
+                            imgEl.onload = () => URL.revokeObjectURL(url);
+                        });
+                    });
+            }
+
+            // Hero input handled earlier, but ensure it's set up if present
+            if (heroInput && hero) {
+                heroInput.addEventListener('change', function(e){
+                    const f = e.target.files && e.target.files[0];
+                    if (!f) return;
+                    const u = URL.createObjectURL(f);
+                    hero.src = u;
+                    hero.onload = () => URL.revokeObjectURL(u);
+                });
+            }
+
+            // Attempt to auto-load images from the Downloads absolute paths the user provided.
+            // Browsers typically block reading arbitrary file:/// paths from pages for security,
+            // so we try two strategies: 1) try file:/// absolute URLs, 2) try relative filenames
+            // if the files are copied next to this HTML.
+
+            const absolutePaths = [
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.47.jpeg',
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.46.jpeg',
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.46 (2).jpeg',
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.46 (1).jpeg',
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.45.jpeg',
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.45 (1).jpeg',
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.44.jpeg',
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.44 (1).jpeg',
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.43.jpeg',
+                'c:/Users/pallaurb/Downloads/WhatsApp Image 2025-10-21 at 15.24.43 (1).jpeg'
+            ];
+
+            // Convert to file:/// URLs and try to fetch HEAD first; if accessible, add to gallery.
+            function toFileUrl(winPath) {
+                return 'file:///' + winPath.replace(/\\/g, '/');
+            }
+
+            // Try loading as relative filename (if user copies files next to HTML)
+            const relativeNames = absolutePaths.map(p => p.split('/').pop());
+
+            // Helper to attempt adding an image by testing load via an Image() object.
+            // If it loads successfully we append it to the gallery and use the first
+            // successful image as the hero image.
+            let firstFound = false;
+            function tryAddImage(src, displayName, isLocal) {
+                const test = new Image();
+                test.onload = function() {
+                    // Append real gallery entry using the same src
+                    const item = { src: src, name: displayName || src, isLocal: !!isLocal };
+                    const entry = createGalleryEntry(item, onDeleteImage, onSaveImage);
+                    gallery.appendChild(entry);
+                    if (isLocal) {
+                        deletableFiles.add(displayName || src);
+                        renderDelArea();
+                    }
+                    if (!firstFound && document.getElementById('hero-image')) {
+                        document.getElementById('hero-image').src = src;
+                        firstFound = true;
+                    }
+                };
+                test.onerror = function() {
+                    // ignore load errors
+                };
+                // Trigger load attempt
+                test.src = src;
+            }
+
+            // Try relative files first (most likely if you copied files into same folder)
+            relativeNames.forEach(name => {
+                tryAddImage(name, name, true);
+            });
+
+            // Then try file:/// absolute paths (may fail due to browser security) — still attempt
+            absolutePaths.forEach(p => {
+                const furl = toFileUrl(p);
+                tryAddImage(furl, p);
+            });
+
+            // (removed deletable-files list UI)
+
+            // Handlers for Save and Delete
+            function onSaveImage(item) {
+                // Try File System Access API first
+                if (window.showSaveFilePicker) {
+                    (async () => {
+                        try {
+                            const opts = { types: [{ description: 'Image', accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.webp'] } }] };
+                            const handle = await window.showSaveFilePicker(opts);
+                            const writable = await handle.createWritable();
+                            let blob;
+                            if (item.file) blob = item.file;
+                            else blob = await (await fetch(item.src)).blob();
+                            await writable.write(blob);
+                            await writable.close();
+                            alert('Saved successfully.');
+                        } catch (err) {
+                            alert('Save cancelled or failed: ' + err.message);
+                        }
+                    })();
+                    return;
+                }
+
+                // Fallback: download via anchor
+                (async () => {
+                    try {
+                        let blob;
+                        if (item.file) blob = item.file;
+                        else {
+                            const res = await fetch(item.src);
+                            blob = await res.blob();
+                        }
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = item.name || 'image.jpg';
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        URL.revokeObjectURL(url);
+                    } catch (err) {
+                        alert('Unable to save: ' + err.message);
+                    }
+                })();
+            }
+
+            function onDeleteImage(item, wrapper) {
+                // Remove UI element
+                if (wrapper && wrapper.parentNode) wrapper.parentNode.removeChild(wrapper);
+                // If this refers to a local file name, add to deletable set and render
+                // if item is local, nothing is done to disk here (UI-only delete)
+            }
+        
+            // -- Purchase panel JS handlers --
+            document.addEventListener('DOMContentLoaded', function(){
+                const qtyInput = document.getElementById('qty-input');
+                const incr = document.getElementById('qty-incr');
+                const decr = document.getElementById('qty-decr');
+                const addCart = document.getElementById('add-cart');
+                const buyNow = document.getElementById('buy-now');
+                const priceEl = document.getElementById('price-amount');
+
+                function clampQty() {
+                    let v = parseInt(qtyInput.value || '1', 10);
+                    if (isNaN(v) || v < 1) v = 1;
+                    qtyInput.value = v;
+                    return v;
+                }
+
+                if (incr) incr.addEventListener('click', function(){ qtyInput.value = clampQty()+1; });
+                if (decr) decr.addEventListener('click', function(){ const v = clampQty()-1; qtyInput.value = v<1?1:v; });
+
+                if (addCart) addCart.addEventListener('click', function(){
+                    const qty = clampQty();
+                    const price = parseInt(priceEl.innerText.replace(/[^0-9]/g,''),10) || 0;
+                    alert('Added to cart: ' + qty + ' × ₹' + price + ' = ₹' + (qty*price));
+                });
+
+                if (buyNow) buyNow.addEventListener('click', function(){
+                    const qty = clampQty();
+                    const price = parseInt(priceEl.innerText.replace(/[^0-9]/g,''),10) || 0;
+                    const total = qty * price;
+                    const sellerNumber = '919938184896'; // +91 9938184896
+                    const productName = encodeURIComponent('Avira Signature Series Eau de Parfum');
+                    const message = encodeURIComponent(`Hello, I would like to buy ${qty} x Avira (Total: ₹${total}). Please confirm availability and payment details.`);
+                    const waUrl = `https://wa.me/${sellerNumber}?text=${message}`;
+                    if (confirm('Proceed to contact seller on WhatsApp to buy ' + qty + ' item(s) for ₹' + total + '?')) {
+                        // Open in a new tab/window
+                        window.open(waUrl, '_blank');
+                    }
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
